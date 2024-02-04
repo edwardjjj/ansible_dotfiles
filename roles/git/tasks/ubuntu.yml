@@ -18,30 +18,23 @@
     scope: global
     value: true
 
-# git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-# - name: "Git | Set URL to SSH"
+# - name: "Git | Set init.defaultBranch"
 #   community.general.git_config:
-#     name: URL
+#     name: init.defaultBranch
 #     scope: global
-#     value: "git@github.com"
+#     value: main
 
-- name: "Git | Set init.defaultBranch"
-  community.general.git_config:
-    name: init.defaultBranch
-    scope: global
-    value: main
-
-- name: "Git | Set pull.rebase"
-  community.general.git_config:
-    name: pull.rebase
-    scope: global
-    value: true
-
-- name: "Git | Set rebase.autoStash"
-  community.general.git_config:
-    name: rebase.autoStash
-    scope: global
-    value: true
+# - name: "Git | Set pull.rebase"
+#   community.general.git_config:
+#     name: pull.rebase
+#     scope: global
+#     value: true
+#
+# - name: "Git | Set rebase.autoStash"
+#   community.general.git_config:
+#     name: rebase.autoStash
+#     scope: global
+#     value: true
 
 - name: "Git | Set user.email"
   community.general.git_config:
@@ -62,23 +55,23 @@
     scope: global
     value: "{{ ansible_user_dir }}/.ssh/id_ed25519.pub"
 
-- name: "Git | Set gpg.format"
-  community.general.git_config:
-    name: gpg.format
-    scope: global
-    value: ssh
-
-- name: "Git | Set commit.gpgsign"
-  community.general.git_config:
-    name: commit.gpgsign
-    scope: global
-    value: true
-
-- name: "Git | Set tag.gpgsign"
-  community.general.git_config:
-    name: tag.gpgsign
-    scope: global
-    value: true
+# - name: "Git | Set gpg.format"
+#   community.general.git_config:
+#     name: gpg.format
+#     scope: global
+#     value: ssh
+#
+# - name: "Git | Set commit.gpgsign"
+#   community.general.git_config:
+#     name: commit.gpgsign
+#     scope: global
+#     value: true
+#
+# - name: "Git | Set tag.gpgsign"
+#   community.general.git_config:
+#     name: tag.gpgsign
+#     scope: global
+#     value: true
 
 - name: "Git | Ensure ~/.config/git/allowed_signers exists"
   ansible.builtin.file:
