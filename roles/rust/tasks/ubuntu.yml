@@ -1,10 +1,15 @@
 ---
 - name: Rust | Install packages
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: true
-  become: true
-  loop:
-    - rustc
-    - cargo
+  block:
+    - name: Check if rustup is installed
+      ansible.builtin.command: "command -v rustup"
+      register: rustup_check
+      ignore_errors: true
+
+    - name: Install rustup if not exist
+      ansible.builtin.shell: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+      when: rustup_check.rc != 0
+
+    - name: Update rustup if exists
+      ansible.builtin.shell: "rustup update"
+      when: rustup_check.rc == 0
