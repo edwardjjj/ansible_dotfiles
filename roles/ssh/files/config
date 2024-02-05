@@ -1,0 +1,12 @@
+Host tsubame
+  hostname login.t3.gsic.titech.ac.jp
+  User 23D38062
+
+Host kanri
+  hostname kanri
+  User edward
+
+Host abci
+    HostName es
+    User acf16154qw
+    ProxyCommand ssh -W %h:%p acf16154qw@as.abci.ai
