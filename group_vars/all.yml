@@ -14,7 +14,7 @@ default_roles:
   - neovim
   # - npm
   # - python
-  # - ssh
+  - ssh
   # - sshfs
   # - tmux
   # - zellij
