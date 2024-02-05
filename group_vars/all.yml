@@ -1,32 +1,23 @@
 default_roles:
-  - system
-  - 1password
-  # - alacritty
-  - asciiquarium
-  - bash
-  - bat
-  - docker
-  - fonts
-  - fzf
-  - git
-  - go
-  - helm
-  - k8s
-  - k9s
-  - lua
-  - nala
-  - neovim
-  - npm
-  - pwsh
-  - python
-  - ruby
+  # - system
+  - alacritty
+  # - asciiquarium
+  # - bash
+  # - bat
+  # - docker
+  # - fonts
+  # - fzf
+  # - git
+  # - go
+  # - lua
   - rust
-  - ssh
-  - sshfs
-  - terraform
-  - tmate
-  - tmux
-  - zellij
+  - neovim
+  # - npm
+  # - python
+  # - ssh
+  # - sshfs
+  # - tmux
+  # - zellij
   # - spotify
   - zoxide
 
@@ -38,11 +29,6 @@ git_user_email: !vault |
   63633139666139386262613237613238336566623464383330633161303732313536353234656433
   3236393461623565360a656430353633396431616232363163316461376633663163346536383266
   30383436616231393939393062623830643164316562313231366438396132613361
-
-go:
-  # packages:
-  # - package: github.com/stillmatic/chat@latest
-  #   cmd: chat
 
 ssh_key:
   id_ed25519: !vault |
