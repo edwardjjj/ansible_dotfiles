@@ -12,11 +12,12 @@
     state: present
   become: true
 
-- name: "Neovim | Install"
-  ansible.builtin.apt:
-    name: neovim
-    state: present
-  become: true
+- name: "Install Bob-nvim version manager"
+  community.general.cargo:
+    name: bob-nvim
+
+- name: "Install Neovim with bob"
+  ansible.builtin.command: bob install latest
 
 - name: "Neovim | Config folder"
   ansible.builtin.file:
@@ -30,7 +31,6 @@
     dest: "{{ ansible_user_dir }}/.config/nvim"
     state: link
     force: true
-
 # - name: "Neovim | Copy init.lua"
 #   ansible.builtin.copy:
 #     dest: "{{ ansible_user_dir }}/.config/nvim/init.lua"
