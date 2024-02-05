@@ -1,0 +1,35 @@
+---
+- name: Install ZSH
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+  become: true
+
+- name: Make zsh as default shell
+  ansible.builtin.user:
+    name: "{{ ansible_env['USER'] }}"
+    shell: /bin/zsh
+  become: true
+
+- name: Make config dir for zsh
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/zsh"
+    state: directory
+    mode: "0755"
+
+- name: Install zap
+  ansible.builtin.command: "zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1"
+
+- name: Create symlink for zshrc
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.zshrc"
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    state: link
+    force: true
+
+- name: Create symlink for zsh addons
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/zsh"
+    dest: "{{ ansible_user_dir }}/.config/zsh"
+    state: link
+    force: true
