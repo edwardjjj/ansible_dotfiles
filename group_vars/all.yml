@@ -4,12 +4,12 @@ default_roles:
   # - asciiquarium
   # - bash
   # - bat
-  # - docker
+  - docker
   # - fonts
-  # - fzf
+  - fzf
   # - git
   # - go
-  # - lua
+  - lua
   - rust
   - neovim
   # - npm
