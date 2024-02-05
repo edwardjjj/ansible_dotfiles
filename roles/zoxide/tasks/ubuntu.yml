@@ -1,8 +1,4 @@
 ---
 - name: "Zoxide | Install"
-  ansible.builtin.apt:
-    name:
-      - zoxide
-    state: present
-  become: true
+  ansible.builtin.shell: "curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash"
   when: ansible_distribution_version >= '21.04'
