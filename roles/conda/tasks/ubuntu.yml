@@ -1,0 +1,19 @@
+---
+- name: Create miniconda Directory
+  ansible.builtin.file:
+    mode: "0755"
+    path: "{{ ansible_user_dir }}/miniconda3"
+    state: directory
+
+- name: Download miniconda install script
+  ansible.builtin.command: wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+  register: file_download
+
+- name: Install miniconda
+  ansible.builtin.command: bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+  when: file_download.rc == 0
+
+- name: Clean install script
+  ansible.builtin.file:
+  path: "{{ ansible_user_dir }}/miniconda3/miniconda.sh"
+  state: absent
