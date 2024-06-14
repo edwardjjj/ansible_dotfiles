@@ -1,6 +1,6 @@
 Host tsubame
-  hostname login.t3.gsic.titech.ac.jp
-  User 23D38062
+  hostname login.t4.gsic.titech.ac.jp
+  User ud02257
 
 Host kanri
   hostname kanri
