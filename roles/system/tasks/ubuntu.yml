@@ -1,12 +1,12 @@
 ---
-- name: "System | Update APT Repos and Upgrade APT Packages"
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: full
-    state: latest
-    autoremove: true
-    autoclean: true
-  become: true
+# - name: "System | Update APT Repos and Upgrade APT Packages"
+#   ansible.builtin.apt:
+#     update_cache: true
+#     upgrade: full
+#     state: latest
+#     autoremove: true
+#     autoclean: true
+#   become: true
 
 - name: "System | Install"
   ansible.builtin.apt:

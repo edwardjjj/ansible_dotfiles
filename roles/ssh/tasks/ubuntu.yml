@@ -1,15 +1,24 @@
 ---
-- name: "SSH | Copy SSH keys"
-  copy:
-    dest: "{{ ansible_user_dir }}/.ssh/{{ ssh_key_item.key }}"
-    content: "{{ ssh_key_item.value }}"
-    mode: 0600
-  no_log: true
-  loop_control:
-    loop_var: ssh_key_item
-  with_items: "{{ ssh_key | default({}) | dict2items }}"
+- name: "SSH | Copy private key"
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/id_ed25519"
+    dest: "{{ ansible_user_dir }}/.ssh/"
+    mode: "0600"
 
-# - name: Copy config
-#   ansible.builtin.template:
-#     dest: "{{ ansible_user_dir }}/.ssh/config"
-#     src: "config.j2"
+- name: "SSH | Copy public key"
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/id_ed25519.pub"
+    dest: "{{ ansible_user_dir }}/.ssh/"
+    mode: "0644"
+
+- name: "SSH | Copy config"
+  ansible.builtin.copy:
+    src: "{{ role_path }}/files/config"
+    dest: "{{ ansible_user_dir }}/.ssh/"
+    mode: "0644"
+
+- name: "SSH | Set .ssh permission"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.ssh"
+    state: directory
+    mode: "0700"
