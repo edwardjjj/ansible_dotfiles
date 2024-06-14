@@ -12,18 +12,27 @@
     state: present
   become: true
 
+- name: Rust | Install packages
+  block:
+    - name: Check if rustup is installed
+      ansible.builtin.command: "command -v rustup"
+      register: rustup_check
+      ignore_errors: true
+
+    - name: Install rustup if not exist
+      ansible.builtin.shell: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+      when: rustup_check.rc != 0
+
+    - name: Update rustup if exists
+      ansible.builtin.shell: "rustup update"
+      when: rustup_check.rc == 0
+
 - name: "Install Bob-nvim version manager"
   community.general.cargo:
     name: bob-nvim
 
 - name: "Install Neovim with bob"
-  ansible.builtin.command: bob install latest
-
-- name: "Neovim | Config folder"
-  ansible.builtin.file:
-    mode: "0755"
-    path: "{{ ansible_user_dir }}/.config/nvim"
-    state: directory
+  ansible.builtin.command: bob use latest
 
 - name: "Neovim | Create symlink to role files directory"
   ansible.builtin.file:

@@ -1,0 +1,21 @@
+---
+- name: "i3 | Create symlink to role files directory"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/i3"
+    dest: "{{ ansible_user_dir }}/.config/i3"
+    state: link
+    force: true
+
+- name: "rofi | Create symlink to role files directory"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/rofi"
+    dest: "{{ ansible_user_dir }}/.config/rofi"
+    state: link
+    force: true
+
+- name: "polybar | Create symlink to role files directory"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/polybar"
+    dest: "{{ ansible_user_dir }}/.config/polybar/"
+    state: link
+    force: true
